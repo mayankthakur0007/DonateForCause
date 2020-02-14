@@ -24,9 +24,8 @@ class AdminPage extends PolymerElement {
         }
         #dialog{
             display:inline-block;
-            width:500px;
-            height:auto;
-            margin:5px;
+            width:1100px;
+            height:500px;
         }
         #serverErr{
           display:none;
@@ -43,7 +42,6 @@ class AdminPage extends PolymerElement {
       
       #tab1{
           width: 100%;
-          
       }
       
       #tab1 th{
@@ -62,6 +60,9 @@ class AdminPage extends PolymerElement {
       h2{
         text-align: center;
       }
+      #tableDiv{
+          margin:12px;
+      }
       </style>
       
 <div id="serverErr">
@@ -75,19 +76,20 @@ class AdminPage extends PolymerElement {
       <paper-dialog id="dialog" entry-animation="scale-up-animation"
       exit-animation="fade-out-animation" >
          <iron-icon icon="clear" id="clearbtn" on-click="_handleClose"></iron-icon>
+         <div id="tableDiv">
          <table id="tab1">
-           <h2>Lists of Donars</h2>
+           <h2>Lists of Donors</h2>
          <tr>
 
              <th>Scheme Name</th>
-             <th>Donar Name</th>
+             <th>Donor Name</th>
 
              <th>Date</th>
              <th>Email ID</th>
              <th>Payment Mode</th>
              
          </tr>
-        <template is="dom-repeat" items={{DonarDetail}}>
+        <template is="dom-repeat" items={{DonorDetail}}>
          <tr>
 
           <td>{{item.schemeName}}</td>
@@ -102,7 +104,7 @@ class AdminPage extends PolymerElement {
     
      
      </table>
-
+</div>
       </paper-dialog>
 
 
@@ -124,7 +126,7 @@ class AdminPage extends PolymerElement {
         type: Array,
         value: []
       },
-      DonarDetail:{
+      DonorDetail:{
         type:Array,
         value:[]
       }
@@ -149,7 +151,7 @@ class AdminPage extends PolymerElement {
     console.log(name, y, schemeId)
     this.$.dialog.open();
     this._makeAjax(`http://10.117.189.37:9090/akshayapathra/schemes/${schemeId}`,'get',null);
-    this.action = 'DonarDetail'
+    this.action = 'DonorDetail'
   }
   //closing paper dialog
   _handleClose(){
@@ -171,9 +173,9 @@ _handleResponse(event) {
    
       break;
 
-    case 'DonarDetail':
-      this.DonarDetail = event.detail.response;
-      console.log(this.DonarDetail);
+    case 'DonorDetail':
+      this.DonorDetail = event.detail.response;
+      console.log(this.DonorDetail);
 
       break;
 

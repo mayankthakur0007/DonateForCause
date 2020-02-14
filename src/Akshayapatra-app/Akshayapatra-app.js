@@ -73,9 +73,7 @@ class Akshayapatra extends PolymerElement {
   #guestTag1{
     display:none;
   }
-  #guestTag2{
-    display:none;
-  }
+
       a{
         text-decoration:none;
         color:white;
@@ -111,7 +109,7 @@ class Akshayapatra extends PolymerElement {
             <login-page name="login-page"></login-page>
             <admin-page name="admin-page"></admin-page>
             <donation-option name="donation-option"></donation-option>
-            <payment-option name="payment-option"></payment-option>
+            <payment-option name="payment-option" scheme-id="{{schemeId}}"></payment-option>
             </iron-pages>
         </app-header-layout>
       </app-drawer-layout>
@@ -123,6 +121,11 @@ class Akshayapatra extends PolymerElement {
         type: String,
         reflectToAttribute: true,
         observer: '_pageChanged'
+      },
+      schemeId: {
+        type: Number,
+        value: 0,
+        observer: '_idChanged'
       },
       login: {
         type: Boolean,
@@ -140,25 +143,28 @@ class Akshayapatra extends PolymerElement {
       '_routePageChanged(routeData.page)'
     ];
   }
-
+  _idChanged(){
+    this.addEventListener('scheme-id', (event) => {
+      this.schemeId = event.detail.id;
+    })
+  }
   _loginChanged() {
     this.addEventListener('refresh-login', (event) => {
       this.login = event.detail.login;
-      this.shadowRoot.querySelector('#guestTag2').style.display = 'block'
     })
   }
   // _handleClear() {
   //   sessionStorage.clear();
   // }
-  _handleAdmin(){
+  _handleAdmin() {
     this.shadowRoot.querySelector('#guestTag1').style.display = 'block'
     this.shadowRoot.querySelector('#adminTag').style.display = 'none'
   }
   _handleLogout() {
     sessionStorage.clear();
-    this.login=false;
+    this.login = false;
   }
-  _handleGuest(){
+  _handleGuest() {
     this.shadowRoot.querySelector('#guestTag1').style.display = 'none'
     this.shadowRoot.querySelector('#adminTag').style.display = 'block'
   }

@@ -50,6 +50,11 @@ class DonationOption extends PolymerElement {
               display:flex;
               flex-direction:row;
           }
+          #payment{
+             float:right;
+             background-color:black;
+             color:white;
+          }
           #clear{
             float:right;
           }
@@ -59,6 +64,7 @@ class DonationOption extends PolymerElement {
            height:auto;
           }
       </style>
+      <app-location route={{route}}></app-location>
       <div id="flex">
 </div>
       <template is="dom-repeat" items={{donations}}>
@@ -80,7 +86,7 @@ class DonationOption extends PolymerElement {
    <h3>  Amount To Be Donated  : ₹ {{data.amount}}</h3> <br>
    <h3> Tax Benefit Amount : ₹ {{data.taxBenefitAmount}}</h3> <br>
    <h3> Benefit Description {{data.taxBenefitDescription}}</h3> <br>
-    <paper-button raised >Make Payment</paper-button>
+    <paper-button id="payment" raised on-click="_handlePayment" >Make Payment</paper-button>
     </paper-dialog>
     <iron-ajax id="ajax" handle-as="json" on-response="_handleResponse" content-type="application/json"
   on-error="_handleError"></iron-ajax>
@@ -97,6 +103,9 @@ class DonationOption extends PolymerElement {
       } ,data: {
         type: Object,
         value: {}
+      },
+      id:{
+        type:Number
       }
     };
   }
@@ -117,16 +126,18 @@ class DonationOption extends PolymerElement {
   _handleClose() {
     this.$.actions.close();
   }
-
+  _handlePayment(){
+    this.dispatchEvent(new CustomEvent('scheme-id', { detail: { id: this.id }, bubbles: true, composed: true }))
+    this.set('route.path', './payment-option')
+  }
   connectedCallback() {
     super.connectedCallback();
     this._makeAjax(`${baseUrl1}/akshayapathra/schemes`, 'get', null);
   }
   _handleModel(event) {
-    var id = event.model.item.schemeId;
-  
+    this.id = event.model.item.schemeId;
     for(let i= 0;i<this.donations.length;i++){
-        if(this.donations[i].schemeId==id){
+        if(this.donations[i].schemeId==this.id){
             // this.data=this.donations[i]
          this.data = this.donations[i];
         }

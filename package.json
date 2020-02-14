@@ -3,6 +3,9 @@
   "dependencies": {
     "@polymer/app-layout": "^3.1.0",
     "@polymer/app-route": "^3.0.2",
+    "@polymer/gold-cc-cvc-input": "^3.0.2",
+    "@polymer/gold-cc-expiration-input": "^3.0.1",
+    "@polymer/gold-cc-input": "^3.0.1",
     "@polymer/iron-ajax": "^3.0.1",
     "@polymer/iron-form": "^3.0.1",
     "@polymer/iron-icon": "^3.0.1",
