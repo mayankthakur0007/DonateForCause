@@ -29,14 +29,28 @@ class DonationOption extends PolymerElement {
             background-color: #f1f8e9;
             color: #000000;
           }
+          paper-card {
+            height: 500px;
+            width: 500px;
+        
+            --paper-card-header-image: {
+              height: 300px;
+              object-fit: cover;
+            }
+        
+            ;
+          }
+          #clear{
+            float:right;
+          }
           #actions{
             height:800px;
             width:1200px;
           }
       </style>
 hello
-      <template is="dom-repeat" items={{doctors}}>
-      <paper-card heading="" id="doctors" image={{item.imageUrl}} alt="Go Nature">
+      <template is="dom-repeat" items={{donations}}>
+      <paper-card heading="" id="donations" image={{item.imageUrl}} alt="Go Nature">
         <h2>Dr. {{item.doctorName}}<span>Ratings:{{item.rating}} <iron-icon icon="star"></iron-icon></span></h2>
         <h4>Fees: Rs{{item.consultationFee}}</h4>
         <h4> Specialization: {{item.specialization}}</h4>
@@ -46,13 +60,70 @@ hello
       </paper-card >
     </template>
     <paper-dialog id="actions" class="colored">
+    <iron-icon id="clear" on-click="_handleClose" icon="clear"></iron-icon>
+    dfa
     </paper-dialog>
+    <iron-ajax id="ajax" handle-as="json" on-response="_handleResponse" content-type="application/json"
+  on-error="_handleError"></iron-ajax>
     `;
   }
   static get properties() {
     return {
-     
+      donations: {
+        type: Array,
+        value: []
+      }, action: {
+        type: String,
+        value: 'List'
+      }
     };
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this._makeAjax(`${baseUrl1}/housepital/locations`, 'get', null);
+  }
+
+  _handleBook() {
+ 
+  }
+  // handling error if encounter error from backend server
+  _handleError() {
+
+
+  }
+
+  _handleClose() {
+    this.$.actions.close();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._makeAjax(`${baseUrl1}/housepital/locations`, 'get', null);
+  }
+  _handleModel(event) {
+    let id = event.model.item.doctorId;
+    this._makeAjax(`${baseUrl1}/housepital/doctors/${id}/availabilities`, 'get', null);
+    this.action = 'Slots'
+  }
+  // getting response from server and storing user name and id in session storage
+  _handleResponse(event) {
+    switch (this.action) {
+  
+      case 'List':
+        this.locations = event.detail.response;
+        this._makeAjax(`${baseUrl1}/housepital/locations/1/doctors?name=${this.name1}`, 'get', null);
+        this.action = 'Data1'
+        break;
+    
+    }
+  }
+  // calling main ajax call method
+  _makeAjax(url, method, postObj) {
+    let ajax = this.$.ajax;
+    ajax.method = method;
+    ajax.url = url;
+    ajax.body = postObj ? JSON.stringify(postObj) : undefined;
+    ajax.generateRequest();
   }
 }
 

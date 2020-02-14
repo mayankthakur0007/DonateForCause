@@ -4,10 +4,7 @@ import 'highcharts-chart/highcharts-behavior.js';
 import 'highcharts-chart/highcharts-map.js';
 import 'highcharts-chart/highcharts-stock.js';
 import 'highcharts-chart/shared-styles.js';
-
 import '@polymer/iron-ajax/iron-ajax.js';
-
-
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
