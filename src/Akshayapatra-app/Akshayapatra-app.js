@@ -4,7 +4,7 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
  * @customElement
  * @polymer
  */
-class DonateForCauseApp extends PolymerElement {
+class Akshayapatra extends PolymerElement {
   static get template() {
     return html`
       <style>
@@ -19,10 +19,10 @@ class DonateForCauseApp extends PolymerElement {
     return {
       prop1: {
         type: String,
-        value: 'DonateForCause-app'
+        value: 'akshayapatra-app'
       }
     };
   }
 }
 
-window.customElements.define('DonateForCause-app', DonateForCauseApp);
+window.customElements.define('akshayapatra-app', Akshayapatra);
