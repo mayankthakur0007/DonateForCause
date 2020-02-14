@@ -99,11 +99,10 @@ class Akshayapatra extends PolymerElement {
                 </h3>        
               </div>
               <template is="dom-if" if={{!login}}>
-              <a name="donation-option" href="[[rootPath]]donation-option" id="guestTag1">Make Donation</a>
+              <a name="donation-option" href="[[rootPath]]donation-option"  on-click="_handleGuest" id="guestTag1">Make Donation</a>
            <a name="login-page" href="[[rootPath]]login-page" id="adminTag" on-click="_handleAdmin">Admin? Login</a>
               </template>
               <template is="dom-if" if={{login}}>
-              <a name="donation-option" href="[[rootPath]]donation-option" id="guestTag2">Make Donation</a>
              <a name="login-page" href="[[rootPath]]login-page" on-click="_handleLogout">Logout</a>
               </template>
             </app-toolbar>
@@ -158,6 +157,10 @@ class Akshayapatra extends PolymerElement {
   _handleLogout() {
     sessionStorage.clear();
     this.login=false;
+  }
+  _handleGuest(){
+    this.shadowRoot.querySelector('#guestTag1').style.display = 'none'
+    this.shadowRoot.querySelector('#adminTag').style.display = 'block'
   }
   /**
   * Show the corresponding page according to the route.
