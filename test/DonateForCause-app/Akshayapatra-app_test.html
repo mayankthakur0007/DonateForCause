@@ -10,6 +10,7 @@
     <script src="../../node_modules/@polymer/test-fixture/test-fixture.js"></script>
     <script src="../../node_modules/mocha/mocha.js"></script>
     <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../../node_modules/sinon/pkg/sinon.js"></script>
     <script src="../../node_modules/wct-mocha/wct-mocha.js"></script>
 
     <script type="module" src="../../src/Akshayapatra-app/Akshayapatra-app.js"></script>
@@ -25,6 +26,36 @@
     
 
     <script>
+
+describe('Given User-List Component:', function () {
+            var element;
+            var elementShadowRoot;
+
+            describe('When component is initailised', function () {
+
+                beforeEach(function () {
+                    element = fixture('akshayapatraApp');
+                    elementShadowRoot = element.shadowRoot;
+                });
+
+                it('should render the component', function () {
+                    expect(element).to.be.exist;
+                    expect(elementShadowRoot).to.be.exist;
+                });
+
+               
+                it('should render iron-ajax component', function () {
+                    let ironAjax = elementShadowRoot.querySelector('iron-ajax')
+                    expect(ironAjax).to.be.exist;
+                    expect(ironAjax).to.not.null;
+                });
+
+              
+
+               
+            });
+        });
+      
   
     </script>
 

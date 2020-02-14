@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
@@ -10,24 +11,78 @@
     <script src="../../node_modules/@polymer/test-fixture/test-fixture.js"></script>
     <script src="../../node_modules/mocha/mocha.js"></script>
     <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../../node_modules/sinon/pkg/sinon.js"></script>
     <script src="../../node_modules/wct-mocha/wct-mocha.js"></script>
 
     <script type="module" src="../../src/Akshayapatra-app/donation-option.js"></script>
-  </head>
-  <body>
+</head>
+
+<body>
 
     <test-fixture id="donationTest">
-      <template>
-        <donation-option></donation-option>
-      </template>
+        <template>
+            <donation-option></donation-option>
+        </template>
     </test-fixture>
 
-    
+
 
     <script>
-  
+
+        describe('Given User-List Component:', function () {
+            var element;
+            var elementShadowRoot;
+
+            describe('When component is rendered', () => {
+
+                beforeEach(function () {
+                    element = fixture('donationTest');
+                    elementShadowRoot = element.shadowRoot;
+                });
+
+
+
+                it('Should render paper-button', function () {
+                    var paperButton = elementShadowRoot.querySelector('paper-button');
+                    expect(paperButton.innerText).to.equal(('Make Payment').toUpperCase());
+                });
+
+
+                it('Should initialize the "action" props', function () {
+                    expect(element.action).to.equal('list')
+                });
+
+                it('Should render iron-ajax', function () {
+                    let ironAjax = elementShadowRoot.querySelector('iron-ajax');
+                    expect(ironAjax).to.exist;
+                });
+
+
+
+
+
+
+
+
+
+
+
+            });
+
+
+
+
+
+        });
+
+
+
+
+
+
     </script>
 
 
-  </body>
+</body>
+
 </html>
