@@ -22,6 +22,9 @@ class AdminPage extends PolymerElement {
         #clearbtn{
           float:right;
         }
+        #dialog{
+          margin: 10px;
+        }
         #serverErr{
           display:none;
           color:white;
@@ -41,18 +44,20 @@ class AdminPage extends PolymerElement {
       }
       
       #tab1 th{
-          background-color: lightblue;
           color: white;
       }
       
       #tab1 tr:nth-child(even)
       {
-          background-color: lightgreen;
+          background-color: white;
       }
       
       #tab1 tr:nth-child(odd)
       {
-          background-color: pink;
+          background-color: rgb(204, 63, 87);
+      }
+      h2{
+        text-align: center;
       }
       </style>
       
@@ -70,17 +75,29 @@ class AdminPage extends PolymerElement {
       exit-animation="fade-out-animation" >
          <iron-icon icon="clear" id="clearbtn" on-click="_handleClose"></iron-icon>
          <table id="tab1">
+           <h2>Lists of Donars</h2>
          <tr>
-             <th>Scheme Id</th>
+
              <th>Scheme Name</th>
              <th>Donar Name</th>
-             <th>Payment Mode</th>
+
              <th>Date</th>
              <th>Email ID</th>
+             <th>Payment Mode</th>
              
          </tr>
+        <template is="dom-repeat" items={{DonarDetail}}>
+         <tr>
 
-         <tr></tr>
+          <td>{{item.schemeName}}</td>
+          <td>{{item.userName}}</td>
+
+          <td>{{item.date}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.paymentMode}}</td>
+        </tr>
+
+        <template>
     
      
      </table>
@@ -98,9 +115,17 @@ class AdminPage extends PolymerElement {
         type: String,
         value: 'admin-page'
       },
+      action:{
+        type:String,
+        value:'scheme'
+      },
       data: {
         type: Array,
         value: []
+      },
+      DonarDetail:{
+        type:Array,
+        value:[]
       }
     };
 
@@ -122,7 +147,8 @@ class AdminPage extends PolymerElement {
     let { name, y, schemeId} = event.point.options;
     console.log(name, y, schemeId)
     this.$.dialog.open();
-
+    this._makeAjax(`http://10.117.189.37:9090/akshayapathra/schemes/${schemeId}`,'get',null);
+    this.action = 'DonarDetail'
   }
   //closing paper dialog
   _handleClose(){
@@ -138,7 +164,23 @@ class AdminPage extends PolymerElement {
 
 // getting response from server and storing user name and id in session storage
 _handleResponse(event) {
-  this.data=event.detail.response;
+  switch(this.action){
+    case 'scheme':
+      this.data=event.detail.response;
+   
+      break;
+
+    case 'DonarDetail':
+      this.DonarDetail = event.detail.response;
+      console.log(this.DonarDetail);
+
+      break;
+
+
+  }
+ 
+     
+
 }
 
     // calling main ajax call method 
