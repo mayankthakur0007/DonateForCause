@@ -46,7 +46,6 @@ hello
       </paper-card >
     </template>
     <paper-dialog id="actions" class="colored">
-
     </paper-dialog>
     `;
   }
