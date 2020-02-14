@@ -15,5 +15,30 @@
             "y": 10,
             "schemeId": 3
           }
+        ],
+        "DonarDetail":[
+
+            {
+
+                
+                    "schemeId":1,
+                    "schemeName":"Blood Donation",
+                    "userName":"amit",
+                    "paymentMode":"PayTm",
+                    "date":"2020-02-01",
+                    "email":"amitsoni392@gmail.com"
+                    
+            },
+            {
+
+                
+                "schemeId":2,
+                "schemeName":"Clothe Donation",
+                "userName":"mayank",
+                "paymentMode":"PhonePe",
+                "date":"2020-04-05",
+                "email":"mayankthakur392@gmail.com"
+                
+        }
         ]
 }

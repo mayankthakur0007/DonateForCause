@@ -75,8 +75,17 @@ class AdminPage extends PolymerElement {
              <th>Email ID</th>
              
          </tr>
+        <template is="dom-repeat" items={{DonarDetail}}>
+         <tr>
+          <td>{{item.schemeId}}</td>
+          <td>{{item.schemeName}}</td>
+          <td>{{item.userName}}</td>
+          <td>{{item.paymentMode}}</td>
+          <td>{{item.date}}</td>
+          <td>{{item.email}}</td>
+        </tr>
 
-         <tr></tr>
+        <template>
     
      
      </table>
@@ -94,9 +103,17 @@ class AdminPage extends PolymerElement {
         type: String,
         value: 'admin-page'
       },
+      action:{
+        type:String,
+        value:'scheme'
+      },
       data: {
         type: Array,
         value: []
+      },
+      DonarDetail:{
+        type:Array,
+        value:[]
       }
     };
 
@@ -112,7 +129,8 @@ class AdminPage extends PolymerElement {
     let { name, y, schemeId} = event.point.options;
     console.log(name, y, schemeId)
     this.$.dialog.open();
-
+    this._makeAjax(`http://10.117.189.37:9090/akshayapathra/schemes/${schemeId}`,'get',null);
+    this.action = 'DonarDetail'
   }
   //closing paper dialog
   _handleClose(){
@@ -131,7 +149,23 @@ class AdminPage extends PolymerElement {
 
 // getting response from server and storing user name and id in session storage
 _handleResponse(event) {
-  this.data=event.detail.response;
+  switch(this.action){
+    case 'scheme':
+      this.data=event.detail.response;
+   
+      break;
+
+    case 'DonarDetail':
+      this.DonarDetail = event.detail.response;
+      console.log(this.DonarDetail);
+
+      break;
+
+
+  }
+ 
+     
+
 }
    
 
