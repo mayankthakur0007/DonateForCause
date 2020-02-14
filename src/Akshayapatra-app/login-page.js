@@ -96,6 +96,7 @@ class LoginPage extends PolymerElement {
       sessionStorage.setItem('doctorName', this.users.doctorName);
       sessionStorage.setItem('doctorId', this.users.doctorId);
       sessionStorage.setItem('login', true);
+      this.set('route.path','./admin-page')
     }
     // calling main ajax call method 
     _makeAjax(url, method, postObj) {
