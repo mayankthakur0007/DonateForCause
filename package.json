@@ -10,6 +10,7 @@
     "@polymer/iron-media-query": "^3.0.1",
     "@polymer/iron-pages": "^3.0.1",
     "@polymer/iron-selector": "^3.0.1",
+    "@polymer/neon-animation": "^3.0.1",
     "@polymer/paper-button": "^3.0.1",
     "@polymer/paper-card": "^3.0.1",
     "@polymer/paper-dialog": "^3.0.1",
@@ -21,7 +22,8 @@
     "@polymer/paper-toast": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
     "highcharts-chart": "^3.0.1",
-    "sinon": "^8.1.1"
+    "sinon": "^8.1.1",
+    "web-animations-js": "^2.3.2"
   },
   "devDependencies": {
     "@polymer/test-fixture": "^4.0.2",

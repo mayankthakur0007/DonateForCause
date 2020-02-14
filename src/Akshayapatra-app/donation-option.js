@@ -56,9 +56,15 @@ class DonationOption extends PolymerElement {
         </div>
       </paper-card >
     </template>
-    <paper-dialog id="actions" class="colored">
+    <paper-dialog id="actions" class="colored"  entry-animation="scale-up-animation"
+    exit-animation="fade-out-animation">
     <iron-icon id="clear" on-click="_handleClose" icon="clear"></iron-icon>
-    dfa
+    {{data.schemeName}}
+    {{data.description}}
+    {{data.amount}}
+    {{data.taxBenefitAmount}}
+    {{data.taxBenefitDescription}}
+    <paper-button raised on-click="_handleModel">Make Payment</paper-button>
     </paper-dialog>
     <iron-ajax id="ajax" handle-as="json" on-response="_handleResponse" content-type="application/json"
   on-error="_handleError"></iron-ajax>
@@ -72,12 +78,15 @@ class DonationOption extends PolymerElement {
       }, action: {
         type: String,
         value: 'List'
+      } ,data: {
+        type: Object,
+        value: {}
       }
     };
   }
   connectedCallback() {
     super.connectedCallback();
-    this._makeAjax(`${baseUrl1}//akshayapathra/schemes`, 'get', null);
+    this._makeAjax(`${baseUrl1}/akshayapathra/schemes`, 'get', null);
   }
 
   _handleBook() {
@@ -98,7 +107,13 @@ class DonationOption extends PolymerElement {
     this._makeAjax(`${baseUrl1}/housepital/locations`, 'get', null);
   }
   _handleModel(event) {
-    let id = event.model.item.doctorId;
+    var id = event.model.item.schemeId;
+    for(let i= 0;i<this.donations.length;i++){
+        if(this.donations[i].schemeId==id){
+            this.data=this.donations[i]
+        }
+    }
+    this.$.actions.open();
   }
   // getting response from server and storing user name and id in session storage
   _handleResponse(event) {
