@@ -1,5 +1,5 @@
 {
-  "name": "Akshayapatra",
+  "name": "akshayapatra-app",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
     "@polymer/app-layout": "^3.1.0",
