@@ -1,7 +1,6 @@
 {
   "name": "akshayapatra-app",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0",
     "@polymer/app-layout": "^3.1.0",
     "@polymer/app-route": "^3.0.2",
     "@polymer/iron-ajax": "^3.0.1",
@@ -20,6 +19,8 @@
     "@polymer/paper-listbox": "^3.0.1",
     "@polymer/paper-tabs": "^3.1.0",
     "@polymer/paper-toast": "^3.0.1",
+    "@polymer/polymer": "^3.0.0",
+    "highcharts-chart": "^3.0.1",
     "sinon": "^8.1.1"
   },
   "devDependencies": {

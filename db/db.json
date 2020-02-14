@@ -1,0 +1,19 @@
+{
+    "schemes":[
+        {
+            "name": "Blood Donation",
+            "y": 60,
+            "schemeId": 1
+          },
+          {
+            "name": "clothe Donation",
+            "y": 30,
+            "schemeId": 2
+          },
+          {
+            "name": "money Donation",
+            "y": 10,
+            "schemeId": 3
+          }
+        ]
+}
