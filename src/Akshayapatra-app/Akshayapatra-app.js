@@ -12,7 +12,7 @@ import '@polymer/paper-button/paper-button.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/polymer/lib/elements/dom-if.js'
-import '@polymer/iron-icons/maps-icons.js';
+import '@polymer/iron-icons/places-icons.js';
 import '@polymer/app-route/app-route.js';
 import '@polymer/app-route/app-location.js';
 import '@polymer/iron-pages/iron-pages.js';
@@ -34,9 +34,9 @@ class Akshayapatra extends PolymerElement {
     return html`
       <style>
       :host {
-        --app-primary-color: rgb(255, 0, 0);
+        --app-primary-color: rgb(36, 36, 255);
         --app-secondary-color: black;
-        font-family: Comic Sans, Comic Sans MS, cursive;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
         display: block;
       }
     
@@ -48,11 +48,7 @@ class Akshayapatra extends PolymerElement {
         color: #fff;
         background-color: var(--app-primary-color);
       }
-    
-      app-header paper-icon-button {
-        --paper-icon-button-ink-color: white;
-      }
-    
+
       h3 {
         font-family: Comic Sans, Comic Sans MS, cursive;
       }
@@ -74,12 +70,9 @@ class Akshayapatra extends PolymerElement {
         color: black;
         font-weight: bold;
       }
-      paper-button{
-        float:right;
-        background-color:black;
-        color:white;
-    
-      }
+  #guestTag{
+    display:none;
+  }
       a{
         text-decoration:none;
         color:white;
@@ -99,14 +92,16 @@ class Akshayapatra extends PolymerElement {
           <app-header slot="header" condenses="" reveals="" effects="waterfall">
             <app-toolbar>
               <div main-title="">
-                <h3><iron-icon icon="maps:local-hospital"></iron-icon>Housepital
+                <h3><iron-icon icon="places:spa"></iron-icon>Akshayapatra
                 </h3>        
               </div>
               <template is="dom-if" if={{!login}}>
-              <paper-button><a href="[[rootPath]]login">Doctor? Login</a></paper-button>
+              <a name="donation-option" href="[[rootPath]]donation-option" id="guestTag">Make Donation</a>
+           <a name="login-page" href="[[rootPath]]login-page" id="adminTag" on-click="_handleAdmin">Admin? Login</a>
               </template>
               <template is="dom-if" if={{login}}>
-               <paper-button on-click="_handleLogout"><a href="[[rootPath]]login">Logout</a></paper-button>
+              <a name="donation-option" href="[[rootPath]]donation-option" id="guestTag">Make Donation</a>
+             <a name="login-page" href="[[rootPath]]login-page" on-click="_handleLogout">Logout</a>
               </template>
             </app-toolbar>
           </app-header>
@@ -143,20 +138,23 @@ class Akshayapatra extends PolymerElement {
       '_routePageChanged(routeData.page)'
     ];
   }
-  // _loginChanged() {
-  //   this.addEventListener('refresh-login', (event) => {
-  //     sessionStorage.
-  //     this.login = event.detail.login;
-  //   })
-  // }
+
+  _loginChanged() {
+    this.addEventListener('refresh-login', (event) => {
+      this.login = event.detail.login;
+    })
+  }
   // _handleClear() {
   //   sessionStorage.clear();
   // }
-
-  // _handleLogout() {
-  //   sessionStorage.clear();
-  //   this.login=false;
-  // }
+  _handleAdmin(){
+    this.shadowRoot.querySelector('#guestTag').style.display = 'block'
+    this.shadowRoot.querySelector('#adminTag').style.display = 'none'
+  }
+  _handleLogout() {
+    sessionStorage.clear();
+    this.login=false;
+  }
   /**
   * Show the corresponding page according to the route.
   * If no page was found in the route data, page will be an empty string.
