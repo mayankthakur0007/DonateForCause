@@ -55,6 +55,9 @@ class AdminPage extends PolymerElement {
       {
           background-color: rgb(204, 63, 87);
       }
+      h2{
+        text-align: center;
+      }
       </style>
       
 <div id="serverErr">
@@ -71,6 +74,7 @@ class AdminPage extends PolymerElement {
       exit-animation="fade-out-animation" >
          <iron-icon icon="clear" id="clearbtn" on-click="_handleClose"></iron-icon>
          <table id="tab1">
+           <h2>Lists of Donars</h2>
          <tr>
 
              <th>Scheme Name</th>
