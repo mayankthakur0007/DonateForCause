@@ -1,9 +1,11 @@
-import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { PolymerElement , html} from '@polymer/polymer/polymer-element.js';
 import 'highcharts-chart/highcharts-chart.js';
 import '@polymer/iron-ajax/iron-ajax.js';
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
+import '@polymer/neon-animation/animations/fade-out-animation.js';
+import '@polymer/neon-animation/animations/scale-up-animation.js';
 
 /**
  * @customElement
@@ -65,7 +67,8 @@ class AdminPage extends PolymerElement {
       <iron-ajax id="ajax" handle-as="json" on-response="_handleResponse" 
       content-type="application/json" on-error="_handleError"></iron-ajax>
 
-      <paper-dialog id="dialog">
+      <paper-dialog id="dialog" entry-animation="scale-up-animation"
+      exit-animation="fade-out-animation" >
          <iron-icon icon="clear" id="clearbtn" on-click="_handleClose"></iron-icon>
          <table id="tab1">
          <tr>

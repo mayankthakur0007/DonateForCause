@@ -70,7 +70,10 @@ class Akshayapatra extends PolymerElement {
         color: black;
         font-weight: bold;
       }
-  #guestTag{
+  #guestTag1{
+    display:none;
+  }
+  #guestTag2{
     display:none;
   }
       a{
@@ -96,11 +99,10 @@ class Akshayapatra extends PolymerElement {
                 </h3>        
               </div>
               <template is="dom-if" if={{!login}}>
-              <a name="donation-option" href="[[rootPath]]donation-option" id="guestTag">Make Donation</a>
+              <a name="donation-option" href="[[rootPath]]donation-option"  on-click="_handleGuest" id="guestTag1">Make Donation</a>
            <a name="login-page" href="[[rootPath]]login-page" id="adminTag" on-click="_handleAdmin">Admin? Login</a>
               </template>
               <template is="dom-if" if={{login}}>
-              <a name="donation-option" href="[[rootPath]]donation-option" id="guestTag">Make Donation</a>
              <a name="login-page" href="[[rootPath]]login-page" on-click="_handleLogout">Logout</a>
               </template>
             </app-toolbar>
@@ -142,18 +144,23 @@ class Akshayapatra extends PolymerElement {
   _loginChanged() {
     this.addEventListener('refresh-login', (event) => {
       this.login = event.detail.login;
+      this.shadowRoot.querySelector('#guestTag2').style.display = 'block'
     })
   }
   // _handleClear() {
   //   sessionStorage.clear();
   // }
   _handleAdmin(){
-    this.shadowRoot.querySelector('#guestTag').style.display = 'block'
+    this.shadowRoot.querySelector('#guestTag1').style.display = 'block'
     this.shadowRoot.querySelector('#adminTag').style.display = 'none'
   }
   _handleLogout() {
     sessionStorage.clear();
     this.login=false;
+  }
+  _handleGuest(){
+    this.shadowRoot.querySelector('#guestTag1').style.display = 'none'
+    this.shadowRoot.querySelector('#adminTag').style.display = 'block'
   }
   /**
   * Show the corresponding page according to the route.

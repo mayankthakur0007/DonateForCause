@@ -8,6 +8,8 @@ import '@polymer/paper-item/paper-item.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/app-route/app-location.js';
 import '@polymer/iron-icons/iron-icons.js';
+import '@polymer/neon-animation/animations/fade-out-animation.js';
+import '@polymer/neon-animation/animations/scale-up-animation.js';
 import '@polymer/paper-toast/paper-toast.js';
 import '@polymer/paper-card/paper-card.js';
 import '@polymer/polymer/lib/elements/dom-repeat';
@@ -30,8 +32,11 @@ class DonationOption extends PolymerElement {
             color: #000000;
           }
           paper-card {
-            height: 500px;
-            width: 500px;
+              border-radius:10px;
+              padding:1px;
+              margin:20px;
+            height: 450px;
+            width: 400px;
         
             --paper-card-header-image: {
               height: 300px;
@@ -40,28 +45,39 @@ class DonationOption extends PolymerElement {
         
             ;
           }
+          #flex{
+              display:flex;
+              flex-direction:row;
+          }
           #clear{
             float:right;
           }
           #actions{
-            height:800px;
-            width:1200px;
+           display:inline-block;
           }
       </style>
-hello
+      <div id="flex">
+</div>
       <template is="dom-repeat" items={{donations}}>
-      <paper-card heading="" id="donations" image={{item.imageUrl}} alt="Go Nature">
-        <h2>Dr. {{item.doctorName}}<span>Ratings:{{item.rating}} <iron-icon icon="star"></iron-icon></span></h2>
-        <h4>Fees: Rs{{item.consultationFee}}</h4>
-        <h4> Specialization: {{item.specialization}}</h4>
-        <div class="card-actions">
-          <paper-button raised on-click="_handleModel">Check Slot</paper-button>
-        </div>
+     <paper-card heading="" id="donations" image={{item.imageUrl}} alt="Go Nature">
+        <h2>{{item.schemeName}}</h2>
+          <paper-button raised on-click="_handleModel">See Details</paper-button>
       </paper-card >
     </template>
-    <paper-dialog id="actions" class="colored">
+    </div>
+    </div>
+
+
+
+    <paper-dialog id="actions" class="colored" entry-animation="scale-up-animation"
+    exit-animation="fade-out-animation">
     <iron-icon id="clear" on-click="_handleClose" icon="clear"></iron-icon>
-    dfa
+    {{data.schemeName}}
+    {{data.description}}
+    {{data.amount}}
+    {{data.taxBenefitAmount}}
+    {{data.taxBenefitDescription}}
+    <paper-button raised on-click="_handleModel">Make Payment</paper-button>
     </paper-dialog>
     <iron-ajax id="ajax" handle-as="json" on-response="_handleResponse" content-type="application/json"
   on-error="_handleError"></iron-ajax>
@@ -75,12 +91,15 @@ hello
       }, action: {
         type: String,
         value: 'List'
+      } ,data: {
+        type: Object,
+        value: {}
       }
     };
   }
   connectedCallback() {
     super.connectedCallback();
-    this._makeAjax(`${baseUrl1}/housepital/locations`, 'get', null);
+    this._makeAjax(`${baseUrl1}/akshayapathra/schemes`, 'get', null);
   }
 
   _handleBook() {
@@ -98,23 +117,26 @@ hello
 
   connectedCallback() {
     super.connectedCallback();
-    this._makeAjax(`${baseUrl1}/housepital/locations`, 'get', null);
+    this._makeAjax(`${baseUrl1}/akshayapathra/schemes`, 'get', null);
   }
   _handleModel(event) {
-    let id = event.model.item.doctorId;
-    this._makeAjax(`${baseUrl1}/housepital/doctors/${id}/availabilities`, 'get', null);
-    this.action = 'Slots'
+    var id = event.model.item.schemeId;
+  
+    for(let i= 0;i<this.donations.length;i++){
+        if(this.donations[i].schemeId==id){
+            // this.data=this.donations[i]
+         this.data = this.donations[i];
+        }
+    }
+    this.$.actions.open();
   }
   // getting response from server and storing user name and id in session storage
   _handleResponse(event) {
     switch (this.action) {
-  
       case 'List':
-        this.locations = event.detail.response;
-        this._makeAjax(`${baseUrl1}/housepital/locations/1/doctors?name=${this.name1}`, 'get', null);
-        this.action = 'Data1'
+        this.donations = event.detail.response;
+
         break;
-    
     }
   }
   // calling main ajax call method
