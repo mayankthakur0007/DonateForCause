@@ -23,6 +23,34 @@ class AdminPage extends PolymerElement {
           display:none;
           color:white;
         }
+        table, th, td{
+          border: 1px solid black;
+          border-collapse: collapse;
+          }
+      th, td{
+          text-align: left;
+          padding: 15px;
+      }
+      
+      #tab1{
+          width: 100%;
+          
+      }
+      
+      #tab1 th{
+          background-color: lightblue;
+          color: white;
+      }
+      
+      #tab1 tr:nth-child(even)
+      {
+          background-color: lightgreen;
+      }
+      
+      #tab1 tr:nth-child(odd)
+      {
+          background-color: pink;
+      }
       </style>
       
 <div id="serverErr">
@@ -47,6 +75,8 @@ class AdminPage extends PolymerElement {
              <th>Email ID</th>
              
          </tr>
+
+         <tr></tr>
     
      
      </table>
@@ -88,7 +118,7 @@ class AdminPage extends PolymerElement {
   _handleClose(){
     this.$.dialog.close();
   }
-
+      // if server is not working it will show error
   _handleError() {
     this.shadowRoot.querySelector('#myChart').style.display='none';
     this.shadowRoot.querySelector('#serverErr').style.display='block';
