@@ -95,7 +95,7 @@ class Akshayapatra extends PolymerElement {
           <app-header slot="header" condenses="" reveals="" effects="waterfall">
             <app-toolbar>
               <div main-title="">
-                <h3><iron-icon icon="places:spa"></iron-icon>Akshayapatra
+                <h3><iron-icon icon="places:spa"></iron-icon>Helping Hands
                 </h3>        
               </div>
               <template is="dom-if" if={{!login}}>

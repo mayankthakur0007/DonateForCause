@@ -13,6 +13,9 @@ class PaymentOption extends PolymerElement {
         }
       </style>
       <h2>Hello [[prop1]]!</h2>
+
+
+     
     `;
   }
   static get properties() {
