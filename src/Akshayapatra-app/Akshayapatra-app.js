@@ -101,7 +101,7 @@ class Akshayapatra extends PolymerElement {
               </template>
               <template is="dom-if" if={{login}}>
               <a name="donation-option" href="[[rootPath]]donation-option" id="guestTag">Make Donation</a>
-             <a name="login-page" href="[[rootPath]]login-page">Logout</a>
+             <a name="login-page" href="[[rootPath]]login-page" on-click="_handleLogout">Logout</a>
               </template>
             </app-toolbar>
           </app-header>

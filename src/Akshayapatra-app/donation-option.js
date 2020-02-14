@@ -34,7 +34,7 @@ class DonationOption extends PolymerElement {
             width:1200px;
           }
       </style>
-
+hello
       <template is="dom-repeat" items={{doctors}}>
       <paper-card heading="" id="doctors" image={{item.imageUrl}} alt="Go Nature">
         <h2>Dr. {{item.doctorName}}<span>Ratings:{{item.rating}} <iron-icon icon="star"></iron-icon></span></h2>
