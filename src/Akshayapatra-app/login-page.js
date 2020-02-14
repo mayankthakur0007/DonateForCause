@@ -10,8 +10,8 @@ import '@polymer/app-route/app-location.js';
 * @polymer
 */
 class LoginPage extends PolymerElement {
-  static get template() {
-    return html`
+    static get template() {
+        return html`
     <style>
     :host {
       display: block;
@@ -61,52 +61,50 @@ class LoginPage extends PolymerElement {
   `;
     }
     static get properties() {
-      return {
-        users: Object,
-        details: {
-          type: Object
-        },
-        baseUrl: String
-      };
+        return {
+            users: Object,
+            details: {
+                type: Object
+            },
+            baseUrl: String
+        };
     }
     // fetching the  user data from josn file 
     signIn() {
-  
-      if (this.$.form.validate()) {
-        let phone = this.phone;
-        let password = this.password;
-        this.details = { mobile: phone, password: password }
-        this.$.form.reset();
-        this._makeAjax(`${baseUrl1}/akshayapathra/admins`, 'post', this.details);
-      } else {
-  
-      }
+
+        if (this.$.form.validate()) {
+            let phone = this.phone;
+            let password = this.password;
+            this.details = { mobile: phone, password: password }
+            this.$.form.reset();
+            this._makeAjax(`${baseUrl1}/akshayapathra/admins`, 'post', this.details);
+        } else {
+
+        }
     }
-  
+
     // handling error if encounter error from backend server
     _handleError() {
-  
+        this.$.wrongCredentials.open();
     }
-  
+
     // getting response from server and storing user name and id in session storage
     _handleResponse(event) {
-      this.users = event.detail.response
-      console.log(this.users)
-      this.dispatchEvent(new CustomEvent('refresh-login', { detail: { login: true }, bubbles: true, composed: true }))
-      sessionStorage.setItem('doctorName', this.users.doctorName);
-      sessionStorage.setItem('doctorId', this.users.doctorId);
-      sessionStorage.setItem('login', true);
-      this.set('route.path','./admin-page')
+        this.users = event.detail.response
+        console.log(this.users)
+        this.dispatchEvent(new CustomEvent('refresh-login', { detail: { login: true }, bubbles: true, composed: true }))
+        sessionStorage.setItem('login', true);
+        this.set('route.path', './admin-page')
     }
     // calling main ajax call method 
     _makeAjax(url, method, postObj) {
-      let ajax = this.$.ajax;
-      ajax.method = method;
-      ajax.url = url;
-      ajax.body = postObj ? JSON.stringify(postObj) : undefined;
-      ajax.generateRequest();
+        let ajax = this.$.ajax;
+        ajax.method = method;
+        ajax.url = url;
+        ajax.body = postObj ? JSON.stringify(postObj) : undefined;
+        ajax.generateRequest();
     }
-  
+
 }
 
 window.customElements.define('login-page', LoginPage);

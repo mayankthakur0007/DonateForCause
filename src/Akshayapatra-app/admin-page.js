@@ -3,6 +3,7 @@ import 'highcharts-chart/highcharts-chart.js';
 import '@polymer/iron-ajax/iron-ajax.js';
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/iron-icon/iron-icon.js';
+import '@polymer/app-route/app-location.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/neon-animation/animations/fade-out-animation.js';
 import '@polymer/neon-animation/animations/scale-up-animation.js';
@@ -59,7 +60,7 @@ class AdminPage extends PolymerElement {
 <p>Server error</p>
 </div>
      
-
+<app-location route={{route}}></app-location>
       <!--<highcharts-chart type="spline" data='[[0,0],[1,7],[2,1],[3,6],[4,8],[5,6]]' title='Test-Spline Chart' x-zoom x-label="Iterations" y-label="Awesomeness Index"></highcharts-chart>-->
       <highcharts-chart id="myChart" type = 'pie' data = {{data}} title="list of scheme" export = "true" on-click="_handleClick"></highcharts-chart>
       <iron-ajax id="ajax" handle-as="json" on-response="_handleResponse" 
@@ -105,9 +106,15 @@ class AdminPage extends PolymerElement {
 
 
   }
+  ready(){
+      super.ready();
+      if(sessionStorage.getItem('login')==null){
+        this.set('route.path','./donation-option')
+      }
+  }
   // as soon as page load make ajax call method will run
   connectedCallback(){
-    super.connectedCallback()
+    super.connectedCallback();
     this._makeAjax('http://localhost:3000/schemes','get',null)
   }
   // reading properties values from event
@@ -124,10 +131,7 @@ class AdminPage extends PolymerElement {
       // if server is not working it will show error
   _handleError() {
     this.shadowRoot.querySelector('#myChart').style.display='none';
-    this.shadowRoot.querySelector('#serverErr').style.display='block';
-
-  
-  
+    this.shadowRoot.querySelector('#serverErr').style.display='block';  
 }
 
 
@@ -136,8 +140,6 @@ class AdminPage extends PolymerElement {
 _handleResponse(event) {
   this.data=event.detail.response;
 }
-   
-
 
     // calling main ajax call method 
     _makeAjax(url, method, postObj) {
