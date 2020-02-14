@@ -1,10 +1,6 @@
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import 'highcharts-chart/highcharts-chart.js';
-
-
 import '@polymer/iron-ajax/iron-ajax.js';
-
-
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
