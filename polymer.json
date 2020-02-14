@@ -1,7 +1,7 @@
 {
   "npm": true,
   "entrypoint": "index.html",
-  "shell": "src/DonateForCause-app/DonateForCause-app.js",
+  "shell": "src/Akshayapatra-app/Akshayapatra-app.js",
   "sources": [
     "src/**/*",
     "manifest/**",
