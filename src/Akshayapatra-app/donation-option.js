@@ -8,6 +8,8 @@ import '@polymer/paper-item/paper-item.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/app-route/app-location.js';
 import '@polymer/iron-icons/iron-icons.js';
+import '@polymer/neon-animation/animations/fade-out-animation.js';
+import '@polymer/neon-animation/animations/scale-up-animation.js';
 import '@polymer/paper-toast/paper-toast.js';
 import '@polymer/paper-card/paper-card.js';
 import '@polymer/polymer/lib/elements/dom-repeat';
@@ -30,8 +32,11 @@ class DonationOption extends PolymerElement {
             color: #000000;
           }
           paper-card {
-            height: 500px;
-            width: 500px;
+              border-radius:10px;
+              padding:1px;
+              margin:20px;
+            height: 450px;
+            width: 400px;
         
             --paper-card-header-image: {
               height: 300px;
@@ -40,23 +45,31 @@ class DonationOption extends PolymerElement {
         
             ;
           }
+          #flex{
+              display:flex;
+              flex-direction:row;
+          }
           #clear{
             float:right;
           }
           #actions{
-            height:800px;
-            width:1200px;
+           display:inline-block;
           }
       </style>
+      <div id="flex">
+</div>
       <template is="dom-repeat" items={{donations}}>
-      <paper-card heading="" id="donations" image={{item.imageUrl}} alt="Go Nature">
+     <paper-card heading="" id="donations" image={{item.imageUrl}} alt="Go Nature">
         <h2>{{item.schemeName}}</h2>
-        <div class="card-actions">
           <paper-button raised on-click="_handleModel">See Details</paper-button>
-        </div>
       </paper-card >
     </template>
-    <paper-dialog id="actions" class="colored"  entry-animation="scale-up-animation"
+    </div>
+    </div>
+
+
+
+    <paper-dialog id="actions" class="colored" entry-animation="scale-up-animation"
     exit-animation="fade-out-animation">
     <iron-icon id="clear" on-click="_handleClose" icon="clear"></iron-icon>
     {{data.schemeName}}
@@ -104,13 +117,15 @@ class DonationOption extends PolymerElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this._makeAjax(`${baseUrl1}/housepital/locations`, 'get', null);
+    this._makeAjax(`${baseUrl1}/akshayapathra/schemes`, 'get', null);
   }
   _handleModel(event) {
     var id = event.model.item.schemeId;
+  
     for(let i= 0;i<this.donations.length;i++){
         if(this.donations[i].schemeId==id){
-            this.data=this.donations[i]
+            // this.data=this.donations[i]
+         this.data = this.donations[i];
         }
     }
     this.$.actions.open();
@@ -120,6 +135,7 @@ class DonationOption extends PolymerElement {
     switch (this.action) {
       case 'List':
         this.donations = event.detail.response;
+
         break;
     }
   }
