@@ -82,12 +82,12 @@ class LoginPage extends PolymerElement {
 
         }
     }
-    ready(){
-        super.ready();
-        if(sessionStorage.getItem('login')==null){
-          this.set('route.path','./donation-option')
-        }
-    }
+    // ready(){
+    //     super.ready();
+    //     if(sessionStorage.getItem('login')==null){
+    //       this.set('route.path','./donation-option')
+    //     }
+    // }
     // handling error if encounter error from backend server
     _handleError() {
         this.$.wrongCredentials.open();
