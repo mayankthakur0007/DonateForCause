@@ -48,14 +48,11 @@ class DonationOption extends PolymerElement {
             width:1200px;
           }
       </style>
-hello
       <template is="dom-repeat" items={{donations}}>
       <paper-card heading="" id="donations" image={{item.imageUrl}} alt="Go Nature">
-        <h2>Dr. {{item.doctorName}}<span>Ratings:{{item.rating}} <iron-icon icon="star"></iron-icon></span></h2>
-        <h4>Fees: Rs{{item.consultationFee}}</h4>
-        <h4> Specialization: {{item.specialization}}</h4>
+        <h2>{{item.schemeName}}</h2>
         <div class="card-actions">
-          <paper-button raised on-click="_handleModel">Check Slot</paper-button>
+          <paper-button raised on-click="_handleModel">See Details</paper-button>
         </div>
       </paper-card >
     </template>
@@ -80,7 +77,7 @@ hello
   }
   connectedCallback() {
     super.connectedCallback();
-    this._makeAjax(`${baseUrl1}/housepital/locations`, 'get', null);
+    this._makeAjax(`${baseUrl1}//akshayapathra/schemes`, 'get', null);
   }
 
   _handleBook() {
@@ -102,19 +99,13 @@ hello
   }
   _handleModel(event) {
     let id = event.model.item.doctorId;
-    this._makeAjax(`${baseUrl1}/housepital/doctors/${id}/availabilities`, 'get', null);
-    this.action = 'Slots'
   }
   // getting response from server and storing user name and id in session storage
   _handleResponse(event) {
     switch (this.action) {
-  
       case 'List':
-        this.locations = event.detail.response;
-        this._makeAjax(`${baseUrl1}/housepital/locations/1/doctors?name=${this.name1}`, 'get', null);
-        this.action = 'Data1'
+        this.donations = event.detail.response;
         break;
-    
     }
   }
   // calling main ajax call method
