@@ -33,9 +33,9 @@ class DonationOption extends PolymerElement {
           }
           paper-card {
               border-radius:10px;
-              padding:1px;
+              padding:5px;
               margin:20px;
-            height: 450px;
+            height: 300px;
             width: 400px;
         
             --paper-card-header-image: {
