@@ -77,8 +77,8 @@ class DonationOption extends PolymerElement {
     <iron-icon id="clear" on-click="_handleClose" icon="clear"></iron-icon>
    <h3> Scheme Name : {{data.schemeName}}</h3> <br>
    <h3>  Scheme Description : {{data.description}}</h3> <br>
-   <h3>  Amount To Be Donated  : {{data.amount}}</h3> <br>
-   <h3> Tax Benefit Amount : {{data.taxBenefitAmount}}</h3> <br>
+   <h3>  Amount To Be Donated  : ₹ {{data.amount}}</h3> <br>
+   <h3> Tax Benefit Amount : ₹ {{data.taxBenefitAmount}}</h3> <br>
    <h3> Benefit Description {{data.taxBenefitDescription}}</h3> <br>
     <paper-button raised >Make Payment</paper-button>
     </paper-dialog>
