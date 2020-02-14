@@ -1,0 +1,6 @@
+{
+  "name": "DonateForCause",
+  "short_name": "DonateForCause",
+  "start_url": "/",
+  "display": "standalone"
+}
