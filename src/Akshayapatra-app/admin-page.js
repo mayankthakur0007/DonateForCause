@@ -72,26 +72,24 @@ class AdminPage extends PolymerElement {
          <iron-icon icon="clear" id="clearbtn" on-click="_handleClose"></iron-icon>
          <table id="tab1">
          <tr>
-             <th>Scheme Id</th>
+
              <th>Scheme Name</th>
              <th>Donar Name</th>
 
              <th>Date</th>
              <th>Email ID</th>
              <th>Payment Mode</th>
-             <th>Payment Status</th>
              
          </tr>
         <template is="dom-repeat" items={{DonarDetail}}>
          <tr>
-          <td>{{item.schemeId}}</td>
+
           <td>{{item.schemeName}}</td>
           <td>{{item.userName}}</td>
 
           <td>{{item.date}}</td>
           <td>{{item.email}}</td>
           <td>{{item.paymentMode}}</td>
-          <td>{{item.paymentStatus}}</td>
         </tr>
 
         <template>
