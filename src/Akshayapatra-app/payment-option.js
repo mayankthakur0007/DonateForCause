@@ -148,42 +148,12 @@ content-type="application/json" on-error="_handleError"></iron-ajax>
             email: email,
             paymentMode: payment
         }
+
         console.log(obj)
         this._makeAjax(`${baseUrl1}/akshayapathra/userschemes`, 'post', obj);
     }
-downloadPdf() {
-       
-        const node = this.$.PDF;
-        let img;
-        let filename;
-        let newImage;
-        domtoimage.toPng(node, { bgcolor: '#fff' })
-          .then(dataUrl => {
-            img = new Image();
-            img.src = dataUrl;
-            newImage = img.src;
+
     
-            img.onload = () =>  {
-              const pdfWidth = img.width;
-              const pdfHeight = img.height;
-              let doc;
-              if (pdfWidth > pdfHeight) {
-                doc = new jsPDF('l', 'px', [pdfWidth, pdfHeight]);
-              } else {
-                doc = new jsPDF('p', 'px', [pdfWidth, pdfHeight]);
-              }
-              const width = doc.internal.pageSize.getWidth();
-              const height = doc.internal.pageSize.getHeight();
-              doc.addImage(newImage, 'PNG', 10, 10, width, height);
-              filename = 'mypdf_' + '.pdf';
-              doc.save(filename);
-            };
-            
-          })
-          .catch( error => {
-            // Error Handling
-          });
-      }
     
     connectedCallback() {
         super.connectedCallback();
