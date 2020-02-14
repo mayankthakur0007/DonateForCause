@@ -1,9 +1,6 @@
 import { html, PolymerElement } from '@polymer/polymer/polymer-element.js';
 import 'highcharts-chart/highcharts-chart.js';
-import 'highcharts-chart/highcharts-behavior.js';
-import 'highcharts-chart/highcharts-map.js';
-import 'highcharts-chart/highcharts-stock.js';
-import 'highcharts-chart/shared-styles.js';
+
 
 import '@polymer/iron-ajax/iron-ajax.js';
 
@@ -26,21 +23,41 @@ class AdminPage extends PolymerElement {
         #clearbtn{
           float:right;
         }
+        #serverErr{
+          display:none;
+          color:white;
+        }
       </style>
-      <h2>Hello [[prop1]]!</h2>
+      
+<div id="serverErr">
+<p>Server error</p>
+</div>
+     
 
       <!--<highcharts-chart type="spline" data='[[0,0],[1,7],[2,1],[3,6],[4,8],[5,6]]' title='Test-Spline Chart' x-zoom x-label="Iterations" y-label="Awesomeness Index"></highcharts-chart>-->
-      <highcharts-chart type = 'pie' data = {{data}} title="list of scheme" export = "true" on-click="_handleClick"></highcharts-chart>
+      <highcharts-chart id="myChart" type = 'pie' data = {{data}} title="list of scheme" export = "true" on-click="_handleClick"></highcharts-chart>
       <iron-ajax id="ajax" handle-as="json" on-response="_handleResponse" 
       content-type="application/json" on-error="_handleError"></iron-ajax>
 
       <paper-dialog id="dialog">
-      <iron-icon icon="clear" id="clearbtn" on-click="_handleClose"></iron-icon>
-  <h2>Dialog Title</h2>
+         <iron-icon icon="clear" id="clearbtn" on-click="_handleClose"></iron-icon>
+         <table id="tab1">
+         <tr>
+             <th>Scheme Id</th>
+             <th>Scheme Name</th>
+             <th>Donar Name</th>
+             <th>Payment Mode</th>
+             <th>Date</th>
+             <th>Email ID</th>
+             
+         </tr>
+    
+     
+     </table>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</paper-dialog>
+      </paper-dialog>
+
+
 
 
     `;
@@ -59,6 +76,11 @@ class AdminPage extends PolymerElement {
 
 
   }
+  // as soon as page load make ajax call method will run
+  connectedCallback(){
+    super.connectedCallback()
+    this._makeAjax('http://localhost:3000/schemes','get',null)
+  }
   // reading properties values from event
   _handleClick(event) {
     let { name, y, schemeId} = event.point.options;
@@ -72,13 +94,14 @@ class AdminPage extends PolymerElement {
   }
 
   _handleError() {
-    this.$.wrongCredentials.open();
+    this.shadowRoot.querySelector('#myChart').style.display='none';
+    this.shadowRoot.querySelector('#serverErr').style.display='block';
+
+  
+  
 }
 
-connectedCallback(){
-  super.connectedCallback()
-  this._makeAjax('http://localhost:3000/schemes','get',null)
-}
+
 
 // getting response from server and storing user name and id in session storage
 _handleResponse(event) {
