@@ -19,6 +19,9 @@ class AdminPage extends PolymerElement {
         #clearbtn{
           float:right;
         }
+        #dialog{
+          margin: 10px;
+        }
         #serverErr{
           display:none;
           color:white;
@@ -38,18 +41,17 @@ class AdminPage extends PolymerElement {
       }
       
       #tab1 th{
-          background-color: lightblue;
           color: white;
       }
       
       #tab1 tr:nth-child(even)
       {
-          background-color: lightgreen;
+          background-color: white;
       }
       
       #tab1 tr:nth-child(odd)
       {
-          background-color: pink;
+          background-color: rgb(204, 63, 87);
       }
       </style>
       
@@ -70,9 +72,11 @@ class AdminPage extends PolymerElement {
              <th>Scheme Id</th>
              <th>Scheme Name</th>
              <th>Donar Name</th>
-             <th>Payment Mode</th>
+
              <th>Date</th>
              <th>Email ID</th>
+             <th>Payment Mode</th>
+             <th>Payment Status</th>
              
          </tr>
         <template is="dom-repeat" items={{DonarDetail}}>
@@ -80,9 +84,11 @@ class AdminPage extends PolymerElement {
           <td>{{item.schemeId}}</td>
           <td>{{item.schemeName}}</td>
           <td>{{item.userName}}</td>
-          <td>{{item.paymentMode}}</td>
+
           <td>{{item.date}}</td>
           <td>{{item.email}}</td>
+          <td>{{item.paymentMode}}</td>
+          <td>{{item.paymentStatus}}</td>
         </tr>
 
         <template>
