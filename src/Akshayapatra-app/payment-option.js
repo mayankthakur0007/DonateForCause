@@ -14,6 +14,9 @@ import '@polymer/gold-cc-cvc-input/gold-cc-cvc-input.js';
 import '@polymer/gold-cc-expiration-input/gold-cc-expiration-input.js';
 import '@polymer/paper-listbox/paper-listbox.js';
 import '@polymer/paper-item/paper-item.js';
+import '@polymer/paper-item/paper-item.js';
+import '../../node_modules/dom-to-image/src/dom-to-image.js';
+import '../../node_modules/jspdf';
 /**
 * @customElement
 * @polymer
@@ -93,6 +96,7 @@ class PaymentOption extends PolymerElement {
 </iron-form>
       <paper-dialog id="dialog" entry-animation="scale-up-animation"  exit-animation="fade-out-animation" >
       <iron-icon id="clear" on-click="_handleClose" icon="clear"></iron-icon>
+      <div id="PDF">
       <h3>Payment success, Review your details</h3>
         <p>Name : {{item.name}}</p>
         <p>PAN : {{item.panNumber}}</p>
@@ -105,11 +109,9 @@ class PaymentOption extends PolymerElement {
         <p>Amount : {{item.amount}}</p>
         <p>Tax Benefit : {{item.taxBenefitAmount}}</p>
         <p> Benefit Description : {{item.taxBenefitDescription}}</p>
+        </div>
+<paper-button>Download PDF</paper-button>
         </paper-dialog>
-
-
-
-
 <iron-ajax id="ajax" handle-as="json" on-response="_handleResponse" 
 content-type="application/json" on-error="_handleError"></iron-ajax>
 `;
@@ -123,8 +125,8 @@ content-type="application/json" on-error="_handleError"></iron-ajax>
                 type: String,
                 value: 'list'
             },
-            item: {
-                type: Array,
+            download: {
+                type: Object,
                 value: []
             }
         };
@@ -149,7 +151,40 @@ content-type="application/json" on-error="_handleError"></iron-ajax>
         console.log(obj)
         this._makeAjax(`${baseUrl1}/akshayapathra/userschemes`, 'post', obj);
     }
-
+downloadPdf() {
+       
+        const node = this.$.PDF;
+        let img;
+        let filename;
+        let newImage;
+        domtoimage.toPng(node, { bgcolor: '#fff' })
+          .then(dataUrl => {
+            img = new Image();
+            img.src = dataUrl;
+            newImage = img.src;
+    
+            img.onload = () =>  {
+              const pdfWidth = img.width;
+              const pdfHeight = img.height;
+              let doc;
+              if (pdfWidth > pdfHeight) {
+                doc = new jsPDF('l', 'px', [pdfWidth, pdfHeight]);
+              } else {
+                doc = new jsPDF('p', 'px', [pdfWidth, pdfHeight]);
+              }
+              const width = doc.internal.pageSize.getWidth();
+              const height = doc.internal.pageSize.getHeight();
+              doc.addImage(newImage, 'PNG', 10, 10, width, height);
+              filename = 'mypdf_' + '.pdf';
+              doc.save(filename);
+            };
+            
+          })
+          .catch( error => {
+            // Error Handling
+          });
+      }
+    
     connectedCallback() {
         super.connectedCallback();
         console.log(this.schemeId)
@@ -169,6 +204,7 @@ content-type="application/json" on-error="_handleError"></iron-ajax>
                 this.item = event.detail.response;
                 this.$.dialog.open();
                 break;
+                // this.obj = URL.createObjectURL(this.download.taxObject);
         }
     }
     // calling main ajax call method

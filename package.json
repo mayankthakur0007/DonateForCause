@@ -24,7 +24,9 @@
     "@polymer/paper-tabs": "^3.1.0",
     "@polymer/paper-toast": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
+    "dom-to-image": "^2.6.0",
     "highcharts-chart": "^3.0.1",
+    "jspdf": "^1.5.3",
     "sinon": "^8.1.1",
     "web-animations-js": "^2.3.2"
   },

@@ -173,9 +173,8 @@ _handleResponse(event) {
   switch(this.action){
     case 'scheme':
       this.data=event.detail.response;
-   
+      console.log(this.data)
       break;
-
     case 'DonorDetail':
       this.DonorDetail = event.detail.response;
       console.log(this.DonorDetail);
