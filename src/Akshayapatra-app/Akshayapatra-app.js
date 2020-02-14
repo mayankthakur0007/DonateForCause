@@ -100,7 +100,7 @@ class Akshayapatra extends PolymerElement {
               </div>
               <template is="dom-if" if={{!login}}>
               <a name="donation-option" href="[[rootPath]]donation-option"  on-click="_handleGuest" id="guestTag1">Make Donation</a>
-           <a name="login-page" href="[[rootPath]]login-page" id="adminTag" on-click="_handleAdmin">Admin? Login</a>
+           <a name="login-page" href="[[rootPath]]login-page" id="adminTag" on-click="_handleAdmin">Login For Admin</a>
               </template>
               <template is="dom-if" if={{login}}>
              <a name="login-page" href="[[rootPath]]login-page" on-click="_handleLogout">Logout</a>

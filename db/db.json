@@ -1,7 +1,8 @@
 {
     "schemes":[
         {
-            "name": "Hunger and Poverty",
+
+            "name": "Health and Poverty",
             "y": 60,
             "schemeId": 1
           },

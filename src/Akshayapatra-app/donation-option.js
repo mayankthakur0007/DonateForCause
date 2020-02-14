@@ -5,6 +5,7 @@ import '@polymer/iron-ajax/iron-ajax.js';
 import '@polymer/paper-dropdown-menu/paper-dropdown-menu.js';
 import '@polymer/paper-listbox/paper-listbox.js';
 import '@polymer/paper-item/paper-item.js';
+import '@polymer/paper-button/paper-button.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/app-route/app-location.js';
 import '@polymer/iron-icons/iron-icons.js';
@@ -33,13 +34,13 @@ class DonationOption extends PolymerElement {
           }
           paper-card {
               border-radius:10px;
-              padding:1px;
+              padding:5px;
               margin:20px;
-            height: 450px;
+            height: 340px;
             width: 400px;
         
             --paper-card-header-image: {
-              height: 300px;
+              height: 200px;
               object-fit: cover;
             }
         
@@ -54,6 +55,8 @@ class DonationOption extends PolymerElement {
           }
           #actions{
            display:inline-block;
+           width:500px;
+           height:auto;
           }
       </style>
       <div id="flex">
@@ -72,12 +75,12 @@ class DonationOption extends PolymerElement {
     <paper-dialog id="actions" class="colored" entry-animation="scale-up-animation"
     exit-animation="fade-out-animation">
     <iron-icon id="clear" on-click="_handleClose" icon="clear"></iron-icon>
-    {{data.schemeName}}
-    {{data.description}}
-    {{data.amount}}
-    {{data.taxBenefitAmount}}
-    {{data.taxBenefitDescription}}
-    <paper-button raised on-click="_handleModel">Make Payment</paper-button>
+   <h3> Scheme Name : {{data.schemeName}}</h3> <br>
+   <h3>  Scheme Description : {{data.description}}</h3> <br>
+   <h3>  Amount To Be Donated  : ₹ {{data.amount}}</h3> <br>
+   <h3> Tax Benefit Amount : ₹ {{data.taxBenefitAmount}}</h3> <br>
+   <h3> Benefit Description {{data.taxBenefitDescription}}</h3> <br>
+    <paper-button raised >Make Payment</paper-button>
     </paper-dialog>
     <iron-ajax id="ajax" handle-as="json" on-response="_handleResponse" content-type="application/json"
   on-error="_handleError"></iron-ajax>
