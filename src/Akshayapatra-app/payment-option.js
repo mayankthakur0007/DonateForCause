@@ -9,14 +9,14 @@ import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/app-route/app-location.js';
 import '@polymer/paper-dropdown-menu/paper-dropdown-menu.js';
 import '@polymer/gold-cc-input/gold-cc-input.js';
+import '@polymer/neon-animation/animations/fade-out-animation.js';
+import '@polymer/neon-animation/animations/scale-up-animation.js';
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/gold-cc-cvc-input/gold-cc-cvc-input.js';
 import '@polymer/gold-cc-expiration-input/gold-cc-expiration-input.js';
 import '@polymer/paper-listbox/paper-listbox.js';
 import '@polymer/paper-item/paper-item.js';
 import '@polymer/paper-item/paper-item.js';
-import '../../node_modules/dom-to-image/src/dom-to-image.js';
-import '../../node_modules/jspdf';
 /**
 * @customElement
 * @polymer

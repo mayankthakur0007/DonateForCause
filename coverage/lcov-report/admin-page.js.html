@@ -22,30 +22,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">48.15% </span>
+                <span class="strong">60.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/27</span>
+                <span class='fraction'>17/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.56% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/9</span>
+                <span class='fraction'>6/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">48.15% </span>
+                <span class="strong">60.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/27</span>
+                <span class='fraction'>17/28</span>
             </div>
         
             
@@ -54,7 +54,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -257,7 +257,9 @@
 <a name='L199'></a><a href='#L199'>199</a>
 <a name='L200'></a><a href='#L200'>200</a>
 <a name='L201'></a><a href='#L201'>201</a>
-<a name='L202'></a><a href='#L202'>202</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -372,6 +374,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -409,29 +413,29 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -484,9 +488,8 @@ class AdminPage extends PolymerElement {
         }
         #dialog{
             display:inline-block;
-            width:500px;
-            height:auto;
-            margin:5px;
+            width:1100px;
+            height:500px;
         }
         #serverErr{
           display:none;
@@ -503,7 +506,6 @@ class AdminPage extends PolymerElement {
       
       #tab1{
           width: 100%;
-          
       }
       
       #tab1 th{
@@ -522,6 +524,9 @@ class AdminPage extends PolymerElement {
       h2{
         text-align: center;
       }
+      #tableDiv{
+          margin:12px;
+      }
       &lt;/style&gt;
       
 &lt;div id="serverErr"&gt;
@@ -537,19 +542,20 @@ class AdminPage extends PolymerElement {
       &lt;paper-dialog id="dialog" entry-animation="scale-up-animation"
       exit-animation="fade-out-animation" &gt;
          &lt;iron-icon icon="clear" id="clearbtn" on-click="_handleClose"&gt;&lt;/iron-icon&gt;
+         &lt;div id="tableDiv"&gt;
          &lt;table id="tab1"&gt;
            &lt;h2&gt;Lists of Donors&lt;/h2&gt;
          &lt;tr&gt;
 &nbsp;
              &lt;th&gt;Scheme Name&lt;/th&gt;
-             &lt;th&gt;Donar Name&lt;/th&gt;
+             &lt;th&gt;Donor Name&lt;/th&gt;
 &nbsp;
              &lt;th&gt;Date&lt;/th&gt;
              &lt;th&gt;Email ID&lt;/th&gt;
              &lt;th&gt;Payment Mode&lt;/th&gt;
              
          &lt;/tr&gt;
-        &lt;template is="dom-repeat" items={{DonarDetail}}&gt;
+        &lt;template is="dom-repeat" items={{DonorDetail}}&gt;
          &lt;tr&gt;
 &nbsp;
           &lt;td&gt;{{item.schemeName}}&lt;/td&gt;
@@ -564,7 +570,7 @@ class AdminPage extends PolymerElement {
     
      
      &lt;/table&gt;
-&nbsp;
+&lt;/div&gt;
       &lt;/paper-dialog&gt;
 &nbsp;
 &nbsp;
@@ -586,7 +592,7 @@ class AdminPage extends PolymerElement {
         type: Array,
         value: []
       },
-      DonarDetail:{
+      DonorDetail:{
         type:Array,
         value:[]
       }
@@ -603,15 +609,16 @@ class AdminPage extends PolymerElement {
   // as soon as page load make ajax call method will run
   connectedCallback(){
     super.connectedCallback();
-    this._makeAjax('http://localhost:3000/schemes','get',null)
+    this._makeAjax('http://10.117.189.37:9090/akshayapathra/schemes/analysis','get',null)
   }
   // reading properties values from event
 <span class="fstat-no" title="function not covered" >  _h</span>andleClick(event) {
     let { name, y, schemeId} = <span class="cstat-no" title="statement not covered" >event.point.options;</span>
 <span class="cstat-no" title="statement not covered" >    console.log(name, y, schemeId)</span>
 <span class="cstat-no" title="statement not covered" >    this.$.dialog.open();</span>
+    
 <span class="cstat-no" title="statement not covered" >    this._makeAjax(`http://10.117.189.37:9090/akshayapathra/schemes/${schemeId}`,'get',null);</span>
-<span class="cstat-no" title="statement not covered" >    this.action = 'DonarDetail'</span>
+<span class="cstat-no" title="statement not covered" >    this.action = 'DonorDetail'</span>
   }
   //closing paper dialog
 <span class="fstat-no" title="function not covered" >  _h</span>andleClose(){
@@ -626,16 +633,15 @@ class AdminPage extends PolymerElement {
 &nbsp;
 &nbsp;
 // getting response from server and storing user name and id in session storage
-<span class="fstat-no" title="function not covered" >_h</span>andleResponse(event) {
-<span class="cstat-no" title="statement not covered" >  switch(this.action){</span>
+_handleResponse(event) {
+  switch(this.action){
     case 'scheme':
-<span class="cstat-no" title="statement not covered" >      this.data=event.detail.response;</span>
-   
-<span class="cstat-no" title="statement not covered" >      break;</span>
-&nbsp;
-    case 'DonarDetail':
-<span class="cstat-no" title="statement not covered" >      this.DonarDetail = event.detail.response;</span>
-<span class="cstat-no" title="statement not covered" >      console.log(this.DonarDetail);</span>
+      this.data=event.detail.response;
+      console.log(this.data)
+      break;
+<span class="branch-1 cbranch-no" title="branch not covered" >    case 'DonorDetail':</span>
+<span class="cstat-no" title="statement not covered" >      this.DonorDetail = event.detail.response;</span>
+<span class="cstat-no" title="statement not covered" >      console.log(this.DonorDetail);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      break;</span>
 &nbsp;
@@ -666,7 +672,7 @@ window.customElements.define('admin-page', AdminPage);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Feb 14 2020 18:36:20 GMT+0530 (India Standard Time)
+                at Fri Feb 14 2020 20:23:46 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="prettify.js"></script>
